@@ -1,4 +1,4 @@
-# creditScoreApplication
+# CreditScoreApplication
 
 ## Prerequisites:
 
@@ -7,7 +7,7 @@ Docker, Git, Maven, JDK 8+, Intellij Idea/Eclipse, Postman
 ## How to Run This Project
 
 
-- Clone this repository: git clone https://github.com/mukitul/customer-service.git
+- Clone this repository: git clone https://github.com/kkkhanenko/creditScoreApplication.git
 - Get into cloned folder: **cd credit-score**
 - Build project: **mvn install** or **mvn clean install** or **mvn install -DskipTests**
 - Run docker compose: **docker-compose up**
