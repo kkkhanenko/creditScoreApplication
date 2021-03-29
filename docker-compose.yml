@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+  mysql-service:
+    image: mysql:5.7
+    networks:
+      - spring-network
+    restart: "no"
+    ports:
+    - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=credits
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=myuser
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - web-service-volume
+  web-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: "no"
+    expose:
+      - "8080"
+    ports:
+      - 8080:8080
+    networks:
+      - spring-network
+    depends_on:
+      - mysql-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-service:3306/credits?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=myuser
+      - SPRING_DATASOURCE_PASSWORD=password
+networks:
+  spring-network:
+
+volumes:
+  web-service-volume:
